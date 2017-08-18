@@ -6,8 +6,6 @@ require_relative 'side_dish'
 # We need to display and ask for main dishes to choose from
 def ordering
   puts "========================".colorize(:yellow)
-  puts "Welcome to the cafetria!"
-  puts "========================".colorize(:yellow)
   puts "Please select a main dish that you would like to have."
   puts "========================".colorize(:yellow)
   $main_dishes.each do |key, value|
@@ -40,4 +38,27 @@ def total(key1, key2, key3)
   puts "Your Item Total Is: $#{sum.round(2)}"
 end
 
-ordering
+def line_options
+  puts "========================".colorize(:yellow)
+  puts "Welcome to the cafetria!"
+  puts "How can I help you?"
+  puts "========================".colorize(:yellow)
+  options = ["Order from the menu", "Make special requests", "Start over", "I have to leave"]
+  options.each_with_index { |value, i| puts "#{i + 1}: #{value}"}
+  choice = gets.to_i
+  case choice
+    when 1
+      ordering
+    when 2
+      special_requests #need to make
+    when 3
+      start_over #need to make
+    when 4
+      exit
+    else
+      puts "That is not an option please choose something else."
+      line_options
+    end
+end
+
+line_options
