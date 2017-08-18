@@ -5,48 +5,39 @@ require_relative 'side_dish'
 
 # We need to display and ask for main dishes to choose from
 def ordering
+  puts "========================".colorize(:yellow)
   puts "Welcome to the cafetria!"
+  puts "========================".colorize(:yellow)
   puts "Please select a main dish that you would like to have."
+  puts "========================".colorize(:yellow)
   $main_dishes.each do |key, value|
     puts "> #{key} => #{value}"
   end
   main_choice = gets.strip
-    if $main_dishes.has_key?(main_choice.to_sym)
-      total($main_dishes[main_choice.to_sym])
-    else
-      puts "That is not a dish. Please make another choice."
-      ordering
-    end
+  puts "========================".colorize(:yellow)
   puts "Please select your side dish."
+  puts "========================".colorize(:yellow)
   $side_dishes.each do |key, value|
     puts "> #{key} => #{value}"
   end
   side_choice1 = gets.strip
-    if $side_dishes.has_key?(side_choice1.to_sym)
-      total($side_dishes[side_choice1.to_sym])
-    else
-      puts "That is not a dish. Please make another choice."
-    end
+  puts "========================".colorize(:yellow)
   puts "Please select your second side dish."
+  puts "========================".colorize(:yellow)
   $side_dishes.each do |key, value|
     puts "> #{key} => #{value}"
   end
   side_choice2 = gets.strip
-    if $side_dishes.has_key?(side_choice2.to_sym)
-      total($side_dishes[side_choice2.to_sym])
-    else
-      puts "That is not a dish. Please make another choice."
-    end
-
+  puts "========================".colorize(:cyan)
+  puts "Your order consists of: #{main_choice}, #{side_choice1}, and #{side_choice2}."
+  total($main_dishes[main_choice.to_sym], $side_dishes[side_choice1.to_sym], $side_dishes[side_choice2.to_sym])
+  puts "========================".colorize(:cyan)
 end
 
-# We then need to display side dishes to choose from two times
-
-# We need to have some sort of total price running.
-def total(key)
-  sum = 0.0
-  sum += key
-  puts "Your Item Total Is: $#{sum.round(4)}"
+def total(key1, key2, key3)
+  sum = 0.00
+  sum += (key1 + key2 + key3)
+  puts "Your Item Total Is: $#{sum.round(2)}"
 end
 
 ordering
