@@ -7,6 +7,7 @@ class SideDish
   def initialize(name, price)
     @name = name
     @price = price
+    $side_dishes[@name.to_sym] = price
   end
 
   # def add
